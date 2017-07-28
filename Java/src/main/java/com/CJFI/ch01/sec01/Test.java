@@ -5,8 +5,8 @@ package com.CJFI.ch01.sec01;
  * @since : 7/1/16
  */
 public class Test {
-    private final int x;
-    private final int y;
+    protected int x;
+    protected int y;
 
     public Test(int a, int b) {
         x = a;
@@ -28,6 +28,10 @@ public class Test {
     private int sum() {return x + y; }
 
     public String toString() {
-        return new String("[" + x + ", " + y + "]");
+        return new String("[" + x + ", " + y + ", multiply:" + multiply(this) + "]");
+    }
+
+    public static int multiply(Test t) {
+        return t.x * t.y;
     }
 }

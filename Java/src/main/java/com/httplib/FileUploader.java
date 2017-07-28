@@ -25,6 +25,7 @@ public class FileUploader {
         RW05("RW05", "http://localhost/Gossamer/"),
         RW15("RW15", "http://localhost/Gossamer/"),
         LOCAL("LOCAL", "http://localhost/Gossamer/"),
+        PGAJJARMACPRO("PGAJJARMACPRO", "http://17.199.71.53/Gossamer/"),
         UNKNOWN("UNKNOWN", "http://unknown");
 
         private final @Nonnull String env;

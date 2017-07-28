@@ -19,6 +19,13 @@ public class Temp {
 //        System.out.println("\nTest: " + t);
         System.out.println("\nTest.x: " + invokeMethod(Test.class, t, "getX"));
         System.out.println("\nTest.y: " + invokeMethod(Test.class, t, "getY"));
+        System.out.println("\nTest: " + t);
+
+        Test tc = (Test) invokeMethod(TestChild.class, null, "getTest", 10, 15);
+//        System.out.println("\nTest: " + t);
+        System.out.println("\nTestChild.x: " + invokeMethod(Test.class, tc, "getX"));
+        System.out.println("\nTestChild.y: " + invokeMethod(Test.class, tc, "getY"));
+        System.out.println("\nTestChild: " + tc);
     }
 
     public static Object invokeMethod(Class<?> clazz, Object object, String methodName, Object... params) {
