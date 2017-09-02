@@ -59,17 +59,13 @@ public class Sol4_MergingRanges {
         final List<Meeting> merged = Lists.newArrayList();
 
         int i = 0;
-        while (i < meetings.size() - 1) {
-            Meeting head = meetings.get(i);
-            Meeting next = meetings.get(i + 1);
-            while (head.overlaps(next) && i < meetings.size() - 1) {
-                head = new Meeting(head.getStartTime(), Math.max(head.getEndTime(), next.getEndTime()));
+        while (i < meetings.size()) {
+            Meeting current = meetings.get(i);
+            while (i < meetings.size() - 1 && current.overlaps(meetings.get(i + 1))) {
+                current = new Meeting(current.getStartTime(), Math.max(current.getEndTime(), meetings.get(i + 1).getEndTime()));
                 i++;
-                if (i < meetings.size() - 1) {
-                    next = meetings.get(i + 1);
-                }
             }
-            merged.add(head);
+            merged.add(current);
             i++;
         }
 
@@ -94,6 +90,17 @@ public class Sol4_MergingRanges {
                 new Meeting(3, 5),
                 new Meeting(6, 8),
                 new Meeting(9, 10)
+        );
+
+        System.out.println(meetings);
+        System.out.println(mergeRanges(meetings));
+
+        meetings = Arrays.asList(
+                new Meeting(11, 14),
+                new Meeting(0, 4),
+                new Meeting(3, 7),
+                new Meeting(6, 8),
+                new Meeting(9, 12)
         );
 
         System.out.println(meetings);
