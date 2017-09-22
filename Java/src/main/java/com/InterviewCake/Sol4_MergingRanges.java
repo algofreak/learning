@@ -1,9 +1,9 @@
 package com.InterviewCake;
 
 import com.beust.jcommander.internal.Lists;
+import org.apache.commons.collections.CollectionUtils;
 import org.checkerframework.checker.nullness.qual.NonNull;
 
-import javax.validation.constraints.NotNull;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -13,7 +13,7 @@ import java.util.List;
  * @since: 9/2/17
  */
 public class Sol4_MergingRanges {
-    public static class Meeting implements Comparable<Meeting> {
+    public static class Meeting /*implements Comparable<Meeting>*/ {
 
         private int startTime;
         private int endTime;
@@ -44,17 +44,15 @@ public class Sol4_MergingRanges {
             return getEndTime() >= other.getStartTime();
         }
 
-        @Override public int compareTo(@NotNull Meeting other) {
-            return this.getStartTime() - other.getStartTime();
-        }
+        // @Override public int compareTo(@NotNull Meeting other) { return this.getStartTime() - other.getStartTime(); }
 
         @Override public String toString() {
             return "[" + startTime + ", " + endTime + "]";
         }
     }
 
-    public static List<Meeting> mergeRanges(final List<Meeting> meetings) {
-        Collections.sort(meetings);
+    public static List<Meeting> mergeRanges1(final List<Meeting> meetings) {
+        Collections.sort(meetings, (a, b) -> a.getStartTime() - b.getStartTime());
 
         final List<Meeting> merged = Lists.newArrayList();
 
@@ -67,6 +65,29 @@ public class Sol4_MergingRanges {
             }
             merged.add(current);
             i++;
+        }
+
+        return merged;
+    }
+
+    public static List<Meeting> mergeRanges(final List<Meeting> meetings) {
+        Collections.sort(meetings, (a, b) -> a.getStartTime() - b.getStartTime());
+        final List<Meeting> merged = Lists.newArrayList();
+
+        if (CollectionUtils.isEmpty(meetings)) {
+            return merged;
+        }
+
+        merged.add(meetings.get(0));
+        for (Meeting current : meetings) {
+            Meeting m = merged.get(merged.size() - 1);
+
+            if (m.overlaps(current)) {
+                m.setStartTime(Math.min(m.getStartTime(), current.getStartTime()));
+                m.setEndTime(Math.max(m.getEndTime(), current.getEndTime()));
+            } else {
+                merged.add(current);
+            }
         }
 
         return merged;
@@ -99,8 +120,35 @@ public class Sol4_MergingRanges {
                 new Meeting(11, 14),
                 new Meeting(0, 4),
                 new Meeting(3, 7),
-                new Meeting(6, 8),
+                new Meeting(6, 15),
                 new Meeting(9, 12)
+        );
+
+        System.out.println(meetings);
+        System.out.println(mergeRanges(meetings));
+
+        meetings = Arrays.asList(
+                new Meeting(1, 5),
+                new Meeting(2, 3)
+        );
+
+        System.out.println(meetings);
+        System.out.println(mergeRanges(meetings));
+
+        meetings = Arrays.asList(
+                new Meeting(1, 10),
+                new Meeting(2, 6),
+                new Meeting(3, 5),
+                new Meeting(7, 9)
+        );
+
+        System.out.println(meetings);
+        System.out.println(mergeRanges(meetings));
+
+        meetings = Arrays.asList(
+                new Meeting(-1, 3),
+                new Meeting(2, 4),
+                new Meeting(4, 7)
         );
 
         System.out.println(meetings);
