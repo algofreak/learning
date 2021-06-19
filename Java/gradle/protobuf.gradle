@@ -1,0 +1,48 @@
+ext {
+    generatedSourcesDir = "$projectDir/src/generated"
+    generatedMainDir = "$generatedSourcesDir/main/java"
+    generatedResourcesDir = "$generatedSourcesDir/main/resoures"
+    generatedTestDir = "$generatedSourcesDir/test/java"
+    generatedTestResourcesDir = "$generatedSourcesDir/test/resources"
+}
+
+sourceSets {
+    generated {
+        compileClasspath = configurations.compile
+        runtimeClasspath = configurations.runtime
+        java.srcDirs = project.files(generatedMainDir)
+        resources.srcDirs = project.files(generatedResourcesDir)
+    }
+
+    generatedTest {
+        compileClasspath = configurations.testCompile
+        runtimeClasspath = configurations.testRuntime
+        java.srcDirs = project.files(generatedTestDir)
+        resources.srcDirs = project.files(generatedTestResourcesDir)
+    }
+
+    main {
+        compileClasspath += sourceSets.generated.output
+        runtimeClasspath += sourceSets.generated.output
+        java.srcDirs generatedSourcesDir
+    }
+
+    test {
+        compileClasspath += sourceSets.generatedTest.output
+        runtimeClasspath += sourceSets.generatedTest.output
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:${protobuf_version}"
+    }
+    // Place generated source files under 'src' directory
+    generatedFilesBaseDir = generatedSourcesDir
+}
+
+project.plugins.withType(IdeaPlugin) {
+    project.idea.module {
+        generatedSourceDirs += [file(generatedMainDir), file(generatedTestDir)]
+    }
+}

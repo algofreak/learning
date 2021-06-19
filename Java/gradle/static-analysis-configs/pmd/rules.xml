@@ -1,0 +1,107 @@
+<?xml version="1.0"?>
+<ruleset name="vwf systems rules"
+         xmlns="http://pmd.sourceforge.net/ruleset/2.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://pmd.sourceforge.net/ruleset/2.0.0 http://pmd.sourceforge.net/ruleset_2_0_0.xsd">
+
+    <description>vwf systems default rules</description>
+
+<!--    to get a list of rule sets:
+       find ~/.gradle -name 'pmd-java*.jar' -exec zipinfo -1 {} \; | egrep 'java/.*.xml' -->
+
+    <rule ref="category/java/errorprone.xml">
+        <exclude name="DataflowAnomalyAnalysis" />
+        <exclude name="BeanMembersShouldSerialize" />
+        <exclude name="AvoidFieldNameMatchingMethodName" />
+        <exclude name="DoNotCallSystemExit" />
+        <exclude name="UseProperClassLoader" />
+        <exclude name="NullAssignment" />
+        <exclude name="CloneMethodMustImplementCloneable" />
+        <exclude name="CloneThrowsCloneNotSupportedException" />
+        <exclude name="ProperCloneImplementation" />
+    </rule>
+    <rule ref="category/java/errorprone.xml/AvoidDuplicateLiterals">
+        <properties>
+            <property name="maxDuplicateLiterals" value="10" />
+            <property name="skipAnnotations" value="true" />
+        </properties>
+    </rule>
+
+    <rule ref="category/java/bestpractices.xml">
+        <!-- Yes in a perfect world where we have unlimited time but not practical... -->
+        <exclude name="JUnitAssertionsShouldIncludeMessage" />
+        <!-- Unclear what an appropriate upper bound would be. -->
+        <exclude name="JUnitTestContainsTooManyAsserts" />
+        <!-- Not always with Mockito verifications... -->
+        <exclude name="JUnitTestsShouldIncludeAssert" />
+        
+        <exclude name="AccessorClassGeneration" />
+        <exclude name="GuardLogStatement" />
+        <exclude name="AccessorMethodGeneration" />
+        <exclude name="ConstantsInInterface" />
+        <exclude name="LooseCoupling" />
+    </rule>
+
+    <rule ref="category/java/codestyle.xml">
+        <!--
+           Excluded because tests that use both JUnit and Mockito tend to
+           statically import many methods which is totally fine.
+         -->
+        <exclude name="TooManyStaticImports" />
+        <exclude name="UnnecessaryModifier" />
+        <exclude name="LongVariable" />
+        <exclude name="VariableNamingConventions" />
+        <exclude name="AvoidFinalLocalVariable" />
+        <exclude name="AtLeastOneConstructor" />
+        <exclude name="CommentDefaultAccessModifier" />
+        <exclude name="ShortVariable" />
+        <exclude name="ShortMethodName" />
+        <exclude name="OnlyOneReturn" />
+        <exclude name="ConfusingTernary" />
+        <exclude name="CallSuperInConstructor" />
+        <exclude name="AbstractNaming" />
+        <exclude name="ShortClassName" />
+        <exclude name="FieldDeclarationsShouldBeAtStartOfClass" />
+        <exclude name="DefaultPackage" />
+    </rule>
+
+    <rule ref="category/java/performance.xml">
+        <exclude name="AvoidInstantiatingObjectsInLoops" />
+        <exclude name="AvoidFileStream" />
+    </rule>
+
+    <rule ref="category/java/design.xml">
+        <exclude name="SignatureDeclareThrowsException" />
+        <exclude name="LawOfDemeter" />
+        <exclude name="ExcessiveImports" />
+        <exclude name="NcssCount" />
+        <exclude name="UseUtilityClass" />
+        <exclude name="AvoidCatchingGenericException" />
+        <exclude name="TooManyMethods" />
+        <exclude name="ExcessiveParameterList" />
+        <exclude name="CouplingBetweenObjects" />
+        <exclude name="TooManyFields" />
+        <exclude name="AvoidThrowingRawExceptionTypes" />
+        <exclude name="UseObjectForClearerAPI" />
+        <exclude name="DataClass" />
+        <exclude name="LoosePackageCoupling" />
+        <exclude name="ExcessiveMethodLength" />
+    </rule>
+    <rule ref="category/java/design.xml/CyclomaticComplexity">
+        <properties>
+            <property name="methodReportLevel" value="30" />
+            <property name="classReportLevel" value="100" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/AvoidDeeplyNestedIfStmts">
+        <properties>
+            <property name="problemDepth" value="5" />
+        </properties>
+    </rule>
+    <rule ref="category/java/design.xml/NPathComplexity">
+        <properties>
+            <property name="reportLevel" value="300" />
+        </properties>
+    </rule>
+</ruleset>
+

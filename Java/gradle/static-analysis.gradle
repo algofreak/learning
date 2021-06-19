@@ -1,0 +1,51 @@
+//apply plugin: 'jacoco'
+apply plugin: 'checkstyle'
+apply plugin: 'com.github.spotbugs'
+apply plugin: 'pmd'
+
+checkstyle {
+    toolVersion = '8.8'
+    showViolations = false
+    ignoreFailures = false
+    configFile = rootProject.file('gradle/static-analysis-configs/checkstyle/checkstyle.xml')
+    sourceSets = [sourceSets.main]
+}
+
+tasks.withType(Checkstyle) {
+    exclude '**/com/apple/amp/vwf/systems/protos/**'
+}
+
+dependencies {
+    spotbugsPlugins 'com.h3xstream.findsecbugs:findsecbugs-plugin:1.7.1'
+    spotbugs 'com.github.spotbugs:spotbugs:4.0.0'
+}
+
+spotbugs {
+    toolVersion = "4.1.4"
+    // Apply the test exclusions to test fixtures, by making them the default.
+    excludeFilter=file("$rootProject.projectDir/gradle/static-analysis-configs/findbugs/excludeFilter.xml")
+}
+
+tasks.withType(SpotBugsTask) {
+    reports {
+        if (System.getProperty('os.name').toLowerCase().startsWith("mac")) {
+            xml.enabled = false
+            html.enabled = true
+        } else {
+            xml.enabled = true
+            html.enabled = false
+        }
+    }
+}
+
+pmd {
+    toolVersion = '6.1.0'
+    ruleSetFiles = rootProject.fileTree('gradle/static-analysis-configs/pmd')
+    ruleSets = []
+    sourceSets = [sourceSets.main]
+
+}
+
+tasks.withType(Pmd) {
+    exclude '**/com/apple/amp/vwf/systems/protos/**'
+}

@@ -1,0 +1,194 @@
+<FindBugsFilter>
+    <Match>
+        <Package name="~com\.apple\.amp\.vwf\.systems\.snapshot\.models\.*" />
+        <Or>
+            <Bug pattern="EI_EXPOSE_REP2"/>
+            <Bug pattern="EI_EXPOSE_REP"/>
+        </Or>
+    </Match>
+    <Match>
+        <Package name="~com\.apple\.amp\.vwf\.systems\.processing\.pipeline\.models\.*" />
+        <Or>
+            <Bug pattern="EI_EXPOSE_REP2"/>
+            <Bug pattern="EI_EXPOSE_REP"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.orchestration.Application" />
+            <Class name="com.apple.amp.vwf.systems.webservice.Application" />
+            <Class name="com.apple.amp.vwf.systems.snapshot.Application" />
+            <Class name="com.apple.amp.vwf.systems.processing.pipeline.Application" />
+        </Or>
+        <Bug pattern="DM_EXIT"/>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.sorcerer.core.model.identifiers.Identifier" />
+        </Or>
+        <Bug pattern="DM_DEFAULT_ENCODING"/>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.appcommons.secrets.MasterKeySecretManager" />
+            <Class name="com.apple.amp.vwf.systems.appcommons.secrets.MasterKeySecretManagerCli" />
+            <Class name="com.apple.amp.vwf.systems.appcommons.secrets.FileSystemSecretStore" />
+            <Class name="com.apple.amp.vwf.systems.appcommons.secrets.RioSecretStore" />
+            <Class name="com.apple.amp.vwf.systems.appcommons.properties.NSPropertiesConfigurator" />
+            <Class name="com.apple.amp.vwf.systems.ravel.cli.tools.gossamer.GossamerToolConfiguration" />
+            <Class name="com.apple.amp.vwf.systems.ravel.core.blob.AudioStorageLocationManager" />
+            <Class name="com.apple.amp.vwf.systems.ravel.core.blob.VideoStorageLocationManager" />
+            <Class name="com.apple.amp.vwf.systems.ravel.core.blob.EvalStorageLocationManager" />
+            <Class name="com.apple.amp.vwf.systems.ravel.orchestration.compute.k8s.scratch.RemoteEphemeralScratchSpaceConfig" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.WebObjectPropertiesConfigurator" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.DefaultRemoteAssetPreparationImpl" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.WebObjectPropertiesConfigurator" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.DefaultRemoteAssetPreparationImpl" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.ServiceModeRemoteAssetPreparationImpl" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.logging.DefaultRemoteStorageLogManagementTest" />
+            <Class name="com.apple.amp.vwf.system.smoke.tests.TriggerEncodesTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.streaming.MediaStreamingServerTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.ServiceModeRemoteAssetPreparationImplTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.DefaultRemoteControlAssetPreparationImplTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.logging.DefaultRemoteStorageLogManagement" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.processes.GroverProcess" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.streaming.MediaStreamingUploadServer" />
+            <Class name="com.apple.amp.vwf.systems.ravel.scheduler.redis.RedisClientProvider" />
+            <Class name="com.apple.amp.vwf.systems.appcommons.appmeta.AppBuildMetaProvider" />
+        </Or>
+        <Or>
+            <Bug pattern="PATH_TRAVERSAL_IN"/>
+            <Bug pattern="PATH_TRAVERSAL_OUT"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.processes.ProcessRunner" />
+        </Or>
+        <Or>
+            <Bug pattern="COMMAND_INJECTION"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.logging.DefaultRemoteStorageLogManagement" />
+        </Or>
+        <Or>
+            <Bug pattern="REC_CATCH_EXCEPTION"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.logging.ServiceModeLogCleanerTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.logging.ServiceModeLogCleaner" />
+        </Or>
+        <Or>
+            <Bug pattern="RV_RETURN_VALUE_IGNORED_BAD_PRACTICE"/>
+            <Bug pattern="PATH_TRAVERSAL_IN"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.CommonWorkflowInstructionResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.IntermediateAssetResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowExecTaskLoggingResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowExecTaskResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowInstructionExecutionResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v2.KubernetesJobV2ResourceTest" />
+            <Class name="com.apple.amp.vwf.systems.ravel.orchestration.components.workers.framework.streaming.BaseStreamingStrategyGenerator" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.DefaultRemoteAssetPreparationImpl" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.assets.DefaultRemoteControlAssetPreparationImplTest" />
+        </Or>
+        <Or>
+            <Bug pattern="HTTP_PARAMETER_POLLUTION"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.cli.tools.video.VersionString" />
+        </Or>
+        <Or>
+            <Bug pattern="REDOS"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.appcommons.secrets.MasterKeySecretManager" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.IntermediateAssetResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowExecutionTaskResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowInstructionExecutionResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v1.WorkflowTokenResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v2.KubernetesJobV2Resource" />
+            <Class name="com.apple.amp.vwf.systems.processing.pipeline.http.resources.v1.VideoComponentStatusResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.observer.util.WebHookMockServer$WebHookServlet" />
+            <Class name="com.apple.amp.vwf.systems.ravel.remote.control.reserved.http.resources.v1.TaskAssignmentExecutionResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.scheduler.logic.coordinator.http.resources.v1.LocalTaskManagerResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.scheduler.logic.coordinator.http.resources.v1.TaskOfferResource" />
+            <Class name="com.apple.amp.vwf.systems.ravel.api.http.resources.v2.TaskExecutionResource" />
+        </Or>
+        <Or>
+            <Bug pattern="CRLF_INJECTION_LOGS"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.core.workflow.graph.ExecTaskGraphNodeWrapperImpl" />
+            <Class name="com.apple.amp.vwf.systems.ravel.core.workflow.graph.ExecTaskGraphWrapperImpl" />
+        </Or>
+        <Or>
+            <Bug pattern="CN_IMPLEMENTS_CLONE_BUT_NOT_CLONEABLE"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.vwf.systems.ravel.observer.util.WebHookMockServer$WebHookServlet" />
+        </Or>
+        <Or>
+            <Bug pattern="XSS_SERVLET"/>
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Package name="~com\.apple\.amp\.vwf\.systems\.ravel\.scheduler\.logic\.scoring\.*" />
+            <Package name="~com\.apple\.amp\.vwf\.systems\.ravel\.core\.models\.workflow\.records\.*" />
+        </Or>
+        <Or>
+            <Bug pattern="EI_EXPOSE_REP2"/>
+            <Bug pattern="EI_EXPOSE_REP"/>
+        </Or>
+    </Match>
+    <Match>
+        <Package name="~com\.apple\.amp\.vwf\.system\.smoke\.tests\.*" />
+        <Or>
+            <Bug pattern="URF_UNREAD_FIELD"/>
+        </Or>
+    </Match>
+    <!-- false positive in Java 11, see https://github.com/spotbugs/spotbugs/issues/756 -->
+    <Match>
+        <Bug pattern="RCN_REDUNDANT_NULLCHECK_WOULD_HAVE_BEEN_A_NPE"/>
+    </Match>
+    <Match>
+        <Bug pattern="RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT"/>
+        <Class name="~com\.apple\.amp\.vwf\..*Test" />
+    </Match>
+    <Match>
+        <Bug pattern="UNENCRYPTED_SERVER_SOCKET"/>
+        <Class name="com.apple.amp.vwf.systems.appcommons.testing.IntegrationTestHelper" />
+    </Match>
+    <Match>
+        <Bug pattern="HTTP_PARAMETER_POLLUTION" />
+        <Or>
+            <Class name="~com\.apple\.amp\.vwf\..*Test" />
+            <Class name="~com\.apple\.amp\.sorcerer\..*Test" />
+        </Or>
+    </Match>
+    <Match>
+        <Or>
+            <Class name="com.apple.amp.sorcerer.api.server.cassandra.dao.OriginStorageConfigDAOTest" />
+            <Class name="com.apple.amp.sorcerer.api.server.services.OriginStorageConfigServiceImplTest" />
+            <Class name="com.apple.amp.sorcerer.api.server.http.resources.v1.OriginStorageConfigResourceTest" />
+            <Class name="com.apple.amp.sorcerer.api.server.http.resources.v1.CacheResourceTest" />
+        </Or>
+        <Bug pattern="HARD_CODE_PASSWORD"/>
+    </Match>
+</FindBugsFilter>

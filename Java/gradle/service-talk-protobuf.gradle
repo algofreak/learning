@@ -1,0 +1,18 @@
+protobuf {
+    plugins {
+        st_grpc {
+            artifact = "com.apple.cie:service-talk-grpc-protoc:${service_talk_version}"
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            st_grpc {
+                // This is done so the protobuf types and services live in the same location.
+                // Note if your .proto sets "option java_multiple_files = false" and the directory
+                // is not configured to be the same for the "--out_java" and "--st_grpc_out" then
+                // compilation will fail.
+                outputSubDir = "java"
+            }
+        }
+    }
+}
